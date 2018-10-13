@@ -12,20 +12,22 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
-public class TeleportCMD implements CommandExecutor {
+public class TeleporthereCMD implements CommandExecutor {
+
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
-        if (cmd.getName().equalsIgnoreCase("teleport")) {
+        if (cmd.getName().equalsIgnoreCase("teleporthere")) {
+
             if (sender instanceof ConsoleCommandSender) {
 
                 Bukkit.getConsoleSender().sendMessage(Main.getInstance().getNotplayer());
 
             } else if (sender instanceof Player) {
-                Player p = (Player) sender;
+                final Player p = (Player) sender;
 
-                if (p.hasPermission("LobbySystem.teleport")) {
+                if (p.hasPermission("LobbySystem.teleporthere")) {
                     if (args.length == 1) {
                         if (Bukkit.getPlayer(args[0]) == null) {
 
@@ -33,13 +35,14 @@ public class TeleportCMD implements CommandExecutor {
 
                         } else {
 
-                            p.teleport(Bukkit.getPlayer(args[0]));
-                            p.sendMessage(Main.getInstance().getPrefix() + "§7Du wurdest zu §e" + Bukkit.getPlayer(args[0]).getName() + "§7 teleportiert.");
+                            Bukkit.getPlayer(args[0]).teleport(p);
                             p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
+                            p.sendMessage(Main.getInstance().getPrefix() + "§7Teleportiere §e" + Bukkit.getPlayer(args[0]).getName() + "§7 zu §e" + p.getName() + ".");
+                            Bukkit.getPlayer(args[0]).sendMessage(Main.getInstance().getPrefix() + "§7Teleportiere §e" + Bukkit.getPlayer(args[0]).getName() + "§7 zu §e" + p.getName() + ".");
 
                         }
                     } else
-                        p.sendMessage(Main.getInstance().getPrefix() + "§cBitte benutze: §e/tp <Spieler>");
+                        p.sendMessage(Main.getInstance().getPrefix() + "§cBitte benutze: §e/tphere <Spieler>");
                 } else
                     p.sendMessage(Main.getInstance().getNoperms());
             }

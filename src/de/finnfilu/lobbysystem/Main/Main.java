@@ -61,6 +61,8 @@ public class Main extends JavaPlugin {
         getCommand("chatclear").setExecutor(new ChatclearCMD());
         getCommand("fly").setExecutor(new FlyCMD());
         getCommand("slowchat").setExecutor(new SlowchatCMD());
+        getCommand("teleport").setExecutor(new TeleportCMD());
+        getCommand("teleporthere").setExecutor(new TeleporthereCMD());
 
     }
 

@@ -13,4 +13,8 @@ commands:
     aliases: [cc]
   fly:
   slowchat:
-    aliases: [sc, nigga]
+    aliases: [sc]
+  teleport:
+    aliases: [tp]
+  teleporthere:
+    aliases: [tphere]
