@@ -69,10 +69,6 @@ public class GamemodeCMD implements CommandExecutor {
             } else if (sender instanceof Player) {
                 final Player p = (Player) sender;
 
-                if (Bukkit.getPlayer(args[0]) == null) {
-                    p.sendMessage(Main.getInstance().getNotonline());
-                } else {
-
                     if (args.length == 1) {
                         if (p.hasPermission("LobbySystem.gamemode")) {
 
@@ -108,46 +104,49 @@ public class GamemodeCMD implements CommandExecutor {
                         } else
                             p.sendMessage(Main.getInstance().getNoperms());
                     } else if (args.length == 2) {
-                        if (p.hasPermission("LobbySystem.gamemode.other")) {
+                        if (Bukkit.getPlayer(args[1]) == null) {
+                            p.sendMessage(Main.getInstance().getNotonline());
+                        } else {
+                            if (p.hasPermission("LobbySystem.gamemode.other")) {
 
-                            if (args[0].equalsIgnoreCase("0")) {
+                                if (args[0].equalsIgnoreCase("0")) {
 
-                                Bukkit.getPlayer(args[1]).setGameMode(GameMode.SURVIVAL);
-                                Bukkit.getPlayer(args[1]).setHealth(20);
-                                Bukkit.getPlayer(args[1]).setFoodLevel(20);
-                                Bukkit.getPlayer(args[1]).sendMessage(Main.getInstance().getPrefix() + "§7Setze Gamemode auf §eÜberleben.");
-                                p.sendMessage(Main.getInstance().getPrefix() + "§7Setze §e" + Bukkit.getPlayer(args[1]).getName() + "'s §7Gamemode auf §eÜberleben.");
+                                    Bukkit.getPlayer(args[1]).setGameMode(GameMode.SURVIVAL);
+                                    Bukkit.getPlayer(args[1]).setHealth(20);
+                                    Bukkit.getPlayer(args[1]).setFoodLevel(20);
+                                    Bukkit.getPlayer(args[1]).sendMessage(Main.getInstance().getPrefix() + "§7Setze Gamemode auf §eÜberleben.");
+                                    p.sendMessage(Main.getInstance().getPrefix() + "§7Setze §e" + Bukkit.getPlayer(args[1]).getName() + "'s §7Gamemode auf §eÜberleben.");
 
-                            } else if (args[0].equalsIgnoreCase("1")) {
+                                } else if (args[0].equalsIgnoreCase("1")) {
 
-                                Bukkit.getPlayer(args[1]).setGameMode(GameMode.CREATIVE);
-                                Bukkit.getPlayer(args[1]).setHealth(20);
-                                Bukkit.getPlayer(args[1]).setFoodLevel(20);
-                                Bukkit.getPlayer(args[1]).sendMessage(Main.getInstance().getPrefix() + "§7Setze Gamemode auf §eKreativ.");
-                                p.sendMessage(Main.getInstance().getPrefix() + "§7Setze §e" + Bukkit.getPlayer(args[1]).getName() + "'s §7Gamemode auf §eKreativ.");
+                                    Bukkit.getPlayer(args[1]).setGameMode(GameMode.CREATIVE);
+                                    Bukkit.getPlayer(args[1]).setHealth(20);
+                                    Bukkit.getPlayer(args[1]).setFoodLevel(20);
+                                    Bukkit.getPlayer(args[1]).sendMessage(Main.getInstance().getPrefix() + "§7Setze Gamemode auf §eKreativ.");
+                                    p.sendMessage(Main.getInstance().getPrefix() + "§7Setze §e" + Bukkit.getPlayer(args[1]).getName() + "'s §7Gamemode auf §eKreativ.");
 
-                            } else if (args[0].equalsIgnoreCase("2")) {
+                                } else if (args[0].equalsIgnoreCase("2")) {
 
-                                Bukkit.getPlayer(args[1]).setGameMode(GameMode.ADVENTURE);
-                                Bukkit.getPlayer(args[1]).setHealth(20);
-                                Bukkit.getPlayer(args[1]).setFoodLevel(20);
-                                Bukkit.getPlayer(args[1]).sendMessage(Main.getInstance().getPrefix() + "§7Setze Gamemode auf §eAbenteuer.");
-                                p.sendMessage(Main.getInstance().getPrefix() + "§7Setze §e" + Bukkit.getPlayer(args[1]).getName() + "'s §7Gamemode auf §eAbenteuer.");
+                                    Bukkit.getPlayer(args[1]).setGameMode(GameMode.ADVENTURE);
+                                    Bukkit.getPlayer(args[1]).setHealth(20);
+                                    Bukkit.getPlayer(args[1]).setFoodLevel(20);
+                                    Bukkit.getPlayer(args[1]).sendMessage(Main.getInstance().getPrefix() + "§7Setze Gamemode auf §eAbenteuer.");
+                                    p.sendMessage(Main.getInstance().getPrefix() + "§7Setze §e" + Bukkit.getPlayer(args[1]).getName() + "'s §7Gamemode auf §eAbenteuer.");
 
-                            } else if (args[0].equalsIgnoreCase("3")) {
+                                } else if (args[0].equalsIgnoreCase("3")) {
 
-                                Bukkit.getPlayer(args[1]).setGameMode(GameMode.SPECTATOR);
-                                Bukkit.getPlayer(args[1]).setHealth(20);
-                                Bukkit.getPlayer(args[1]).setFoodLevel(20);
-                                Bukkit.getPlayer(args[1]).sendMessage(Main.getInstance().getPrefix() + "§7Setze Gamemode auf §eZuschauer.");
-                                p.sendMessage(Main.getInstance().getPrefix() + "§7Setze §e" + Bukkit.getPlayer(args[1]).getName() + "'s §7Gamemode auf §eZuschauer.");
+                                    Bukkit.getPlayer(args[1]).setGameMode(GameMode.SPECTATOR);
+                                    Bukkit.getPlayer(args[1]).setHealth(20);
+                                    Bukkit.getPlayer(args[1]).setFoodLevel(20);
+                                    Bukkit.getPlayer(args[1]).sendMessage(Main.getInstance().getPrefix() + "§7Setze Gamemode auf §eZuschauer.");
+                                    p.sendMessage(Main.getInstance().getPrefix() + "§7Setze §e" + Bukkit.getPlayer(args[1]).getName() + "'s §7Gamemode auf §eZuschauer.");
 
-                            }
-                        } else
-                            p.sendMessage(Main.getInstance().getNoperms());
+                                }
+                            } else
+                                p.sendMessage(Main.getInstance().getNoperms());
+                        }
                     } else
                         p.sendMessage(Main.getInstance().getPrefix() + "§cBitte benutze: §e/gm <0, 1, 2, 3> <Spieler>");
-                }
             }
         }
 

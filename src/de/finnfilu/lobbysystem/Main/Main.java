@@ -53,12 +53,14 @@ public class Main extends JavaPlugin {
         PluginManager pm = Bukkit.getPluginManager();
 
         pm.registerEvents(new MainEvents(), this);
+        pm.registerEvents(new SlowchatCMD(), this);
 
         getCommand("setwarp").setExecutor(new SetwarpCMD());
         getCommand("warp").setExecutor(new WarpCMD());
         getCommand("gamemode").setExecutor(new GamemodeCMD());
         getCommand("chatclear").setExecutor(new ChatclearCMD());
         getCommand("fly").setExecutor(new FlyCMD());
+        getCommand("slowchat").setExecutor(new SlowchatCMD());
 
     }
 

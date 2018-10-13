@@ -12,3 +12,5 @@ commands:
   chatclear:
     aliases: [cc]
   fly:
+  slowchat:
+    aliases: [sc, nigga]
