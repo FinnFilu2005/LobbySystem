@@ -41,6 +41,7 @@ public class SlowchatCMD implements CommandExecutor, Listener {
                                     case 15:
                                     case 10:
                                     case 5:
+                                    case 4:
                                     case 3:
                                     case 2:
                                         Bukkit.broadcastMessage(Main.getInstance().getPrefix() + "§7Der Chat wird in §e" + countdown + " Sekunden §7deaktiviert.");
@@ -91,6 +92,7 @@ public class SlowchatCMD implements CommandExecutor, Listener {
                                         case 15:
                                         case 10:
                                         case 5:
+                                        case 4:
                                         case 3:
                                         case 2:
                                             Bukkit.broadcastMessage(Main.getInstance().getPrefix() + "§7Der Chat wird in §e" + countdown + " Sekunden §7deaktiviert.");
@@ -130,6 +132,8 @@ public class SlowchatCMD implements CommandExecutor, Listener {
     @EventHandler
     public void onChat(AsyncPlayerChatEvent e) {
         final Player p = e.getPlayer();
+
+        String msg = e.getMessage();
 
         if (slowedchat == true) {
             if (!p.hasPermission("LobbySystem.ignoreslowedchat")) {
