@@ -18,3 +18,5 @@ commands:
     aliases: [tp]
   teleporthere:
     aliases: [tphere]
+  buildmode:
+    aliases: [build]

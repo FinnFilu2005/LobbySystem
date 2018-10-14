@@ -5,11 +5,14 @@ package de.finnfilu.lobbysystem.Main;
 
 import de.finnfilu.lobbysystem.Commands.*;
 import de.finnfilu.lobbysystem.Listener.ChatFormat;
+import de.finnfilu.lobbysystem.Listener.CompassListener;
 import de.finnfilu.lobbysystem.Listener.JoinListener;
 import de.finnfilu.lobbysystem.Listener.MainEvents;
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
+import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -43,8 +46,8 @@ public class Main extends JavaPlugin {
 
     public void init() {
 
-        Bukkit.getConsoleSender().sendMessage("§aAktiviere LobbySystem");
-        Bukkit.getConsoleSender().sendMessage("§eDie Config.yml wurde geladen");
+        Bukkit.getConsoleSender().sendMessage(this.getPrefix() + "§aAktiviere LobbySystem");
+        Bukkit.getConsoleSender().sendMessage(this.getPrefix() + "§eDie Config.yml wurde geladen");
 
         Bukkit.getWorld("world").setGameRuleValue("doDaylightCycle", "false");
         Bukkit.getWorld("world").setDifficulty(Difficulty.PEACEFUL);
@@ -59,6 +62,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new SlowchatCMD(), this);
         pm.registerEvents(new ChatFormat(), this);
         pm.registerEvents(new JoinListener(), this);
+        pm.registerEvents(new CompassListener(), this);
 
         getCommand("setwarp").setExecutor(new SetwarpCMD());
         getCommand("warp").setExecutor(new WarpCMD());
@@ -68,6 +72,7 @@ public class Main extends JavaPlugin {
         getCommand("slowchat").setExecutor(new SlowchatCMD());
         getCommand("teleport").setExecutor(new TeleportCMD());
         getCommand("teleporthere").setExecutor(new TeleporthereCMD());
+        getCommand("buildmode").setExecutor(new BuildCMD());
 
     }
 
@@ -85,6 +90,12 @@ public class Main extends JavaPlugin {
         this.getConfig().addDefault("Item.CompassName", "&6Navigator");
         this.getConfig().addDefault("Item.BlazeRodName", "&aSpieler verstecken");
         this.getConfig().addDefault("Item.HeadName", "&eFreunde");
+
+        this.getConfig().addDefault("Compass.Item1Name", "&bBedwars");
+        this.getConfig().addDefault("Compass.Item2Name", "&cSkywars");
+        this.getConfig().addDefault("Compass.Item3Name", "&eKnockbackFFA");
+        this.getConfig().addDefault("Compass.Item4Name", "&5MLGRush");
+        this.getConfig().addDefault("Compass.SpawnName", "&6Spawn");
 
         this.getConfig().addDefault("Friend.PerformedCommand", "friend");
 
@@ -107,6 +118,12 @@ public class Main extends JavaPlugin {
         this.getConfig().addDefault("Chatformat.User", "&7[&7User&7] &7name &8» &r");
 
         this.saveConfig();
+    }
+
+    public void playSound(Player p) {
+
+        p.playSound(p.getLocation(), Sound.LEVEL_UP, 1, 1);
+
     }
 
     public static Main getInstance() {
